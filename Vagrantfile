@@ -1,18 +1,10 @@
-# Variables 
-IMAGE = "centos/7"
-MASTER_COUNT = 1
-WORKER_COUNT = 3
-ADAPTERNAME = "Intel(R) Dual Band Wireless-AC 3168"
-
-#Vagrantfile
-Vagrant.configure("2") do |config|
   (1..MASTER_COUNT).each do |i|
     config.vm.define "master#{i}" do |subconfig|
       subconfig.vm.box = IMAGE
       subconfig.vm.provider "virtualbox" do |vb|
         vb.name = "master#{i}"
         vb.customize ["modifyvm", :id, "--audio", "none"]
-        vb.memory = 4096
+        vb.memory = 2048
         vb.cpus = 4
       end  
       subconfig.vm.hostname = "master#{i}"
@@ -25,8 +17,8 @@ Vagrant.configure("2") do |config|
       subconfig.vm.provider "virtualbox" do |vb|
         vb.name = "node#{i}"
         vb.customize ["modifyvm", :id, "--audio", "none"]
-        vb.memory = 4096
-        vb.cpus = 4
+        vb.memory = 2048
+        vb.cpus = 2
       end  
       subconfig.vm.hostname = "node#{i}"
       subconfig.vm.network "public_network", adapter:2, ip: "192.168.11.#{189 + i}", netmask: "255.255.255.0",  bridge: ADAPTERNAME
