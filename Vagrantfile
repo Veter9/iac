@@ -16,7 +16,7 @@ Vagrant.configure("2") do |config|
         vb.cpus = 4
       end  
       subconfig.vm.hostname = "master#{i}"
-      subconfig.vm.network "public_network", adapter:2, ip: "192.168.11.18#{i + 1}", netmask: "255.255.255.0",  bridge: ADAPTERNAME
+      subconfig.vm.network "public_network", adapter:2, ip: "192.168.11.#{179 + i}", netmask: "255.255.255.0",  bridge: ADAPTERNAME
     end  
   end
   (1..WORKER_COUNT).each do |i|
@@ -29,7 +29,7 @@ Vagrant.configure("2") do |config|
         vb.cpus = 4
       end  
       subconfig.vm.hostname = "node#{i}"
-      subconfig.vm.network "public_network", adapter:2, ip: "192.168.11.19#{i + 1}", netmask: "255.255.255.0",  bridge: ADAPTERNAME
+      subconfig.vm.network "public_network", adapter:2, ip: "192.168.11.#{189 + i}", netmask: "255.255.255.0",  bridge: ADAPTERNAME
     end
   end
 # Shell scripts  
